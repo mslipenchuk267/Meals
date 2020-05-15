@@ -23,6 +23,16 @@ const CategoriesMealsScreen = props => {
     );
 };
 
+CategoriesMealsScreen.navigationOptions = (navigationData) => {
+    const catId = navigationData.navigation.getParam('categoryId');
+    const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
+    return {
+        headerTitle: selectedCategory.title,
+        headerBackTitle: 'Categories',
+        headerTruncatedBackTitle: 'Back',
+    };
+};
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
