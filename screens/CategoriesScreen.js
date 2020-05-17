@@ -33,11 +33,13 @@ const CategoriesScreen = props => {
     };
 
     return (
-        <FlatList
-            //keyExtractor={(item, index) => item.id}
-            data={CATEGORIES}
-            renderItem={renderGridItem}
-            numColumns={2} />
+        <View style={styles.screen}>
+            <FlatList
+                //keyExtractor={(item, index) => item.id}
+                data={CATEGORIES}
+                renderItem={renderGridItem}
+                numColumns={2} />
+        </View>
     );
 };
 
@@ -47,9 +49,10 @@ CategoriesScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        //flex: 1,
+        //justifyContent: 'center',
+        //alignItems: 'center',
+        backgroundColor: 'white'
     },
 });
 

@@ -1,6 +1,6 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import Platform from 'react-native';
+import { Platform } from 'react-native';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -19,14 +19,15 @@ const MealsNavigator = createStackNavigator({
     MealDetail: MealDetailScreen
 },
     {
-        //mode: 'modal',
-        //initialRouteName: MealDetail
+
         defaultNavigationOptions: {
+            headerBackAllowFontScaling: true,
+            backgroundColor: 'white',
             headerStyle: {
-                backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
+                backgroundColor: Platform.OS === 'ios' ? 'white' : Colors.primaryColor
             },
             headerTintColor:
-                Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+                Platform.OS === 'ios' ? Colors.primaryColor : 'white',
         }
     });
 
