@@ -14,7 +14,12 @@ const CategoriesMealsScreen = props => {
                 complexity={itemData.item.complexity}
                 affordability={itemData.item.affordability}
                 image={itemData.item.imageUrl}
-                onSelect={() => { }}
+                onSelectMeal={() => {
+                    props.navigation.navigate({
+                        routeName: 'MealDetail',
+                        params: {mealId: itemData.item.id}
+                    })
+                }}
             />
         );
 
@@ -52,10 +57,10 @@ CategoriesMealsScreen.navigationOptions = (navigationData) => {
 
 const styles = StyleSheet.create({
     screen: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 15
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 15
     }
 });
 
