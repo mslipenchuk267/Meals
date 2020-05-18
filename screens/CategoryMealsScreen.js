@@ -12,7 +12,7 @@ const CategoriesMealsScreen = props => {
     const displayedMeals = MEALS.filter(
         meal => meal.categoryIds.indexOf(catId) >= 0
     );
-    // Forward navigatin prop to access from child
+    // Forward navigation prop to access from child
     return <MealList listData={displayedMeals} navigation={props.navigation}/>;
 };
 

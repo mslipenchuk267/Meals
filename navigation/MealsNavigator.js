@@ -15,13 +15,16 @@ import FiltersScreen from '../screens/FiltersScreen'
 import Colors from '../constants/Colors'
 
 const defaultStackNavOptions = {
+    headerTitleAllowFontScaling: true,
     headerBackAllowFontScaling: true,
     backgroundColor: 'white',
     headerStyle: {
         backgroundColor: Platform.OS === 'ios' ? 'white' : Colors.primaryColor
     },
     headerTitleStyle: {
-        fontFamily: 'open-sans-bold'
+        fontFamily: 'open-sans-bold',
+        fontSize: 22
+        
     },
     headerBackTitleStyle: {
         fontFamily: 'open-sans'
