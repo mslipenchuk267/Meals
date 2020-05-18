@@ -2,6 +2,7 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
@@ -10,6 +11,7 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import FavoritesScreen from '../screens/FavoritesScreen'
+import FiltersScreen from '../screens/FiltersScreen'
 import Colors from '../constants/Colors'
 
 const defaultStackNavOptions = {
@@ -47,6 +49,11 @@ const FavNavigator = createStackNavigator({
     }
 );
 
+// Just made this a stack so we get a header
+const FiltersNavigator = createStackNavigator({
+    Filters: FiltersScreen
+})
+
 const tabScreenConfig = {
     Meals: {
         screen: MealsNavigator, navigationOptions: {
@@ -79,4 +86,10 @@ const MealsFavTabNavigator = Platform.OS === 'android' ?
         }
     });
 
-export default createAppContainer(MealsFavTabNavigator);
+
+const MainNavigator = createDrawerNavigator({
+    MealsFavs: MealsFavTabNavigator,
+    Filters: FiltersNavigator
+});
+
+export default createAppContainer(MainNavigator);
