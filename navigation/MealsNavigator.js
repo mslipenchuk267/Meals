@@ -12,6 +12,16 @@ import MealDetailScreen from '../screens/MealDetailScreen';
 import FavoritesScreen from '../screens/FavoritesScreen'
 import Colors from '../constants/Colors'
 
+const defaultStackNavOptions = {
+    headerBackAllowFontScaling: true,
+    backgroundColor: 'white',
+    headerStyle: {
+        backgroundColor: Platform.OS === 'ios' ? 'white' : Colors.primaryColor
+    },
+    headerTintColor:
+        Platform.OS === 'ios' ? Colors.primaryColor : 'white',
+};
+
 // Create stack navigator
 // pass which screens to move between
 const MealsNavigator = createStackNavigator({
@@ -24,16 +34,16 @@ const MealsNavigator = createStackNavigator({
     MealDetail: MealDetailScreen
 },
     {
+        defaultNavigationOptions: defaultStackNavOptions
+    }
+);
 
-        defaultNavigationOptions: {
-            headerBackAllowFontScaling: true,
-            backgroundColor: 'white',
-            headerStyle: {
-                backgroundColor: Platform.OS === 'ios' ? 'white' : Colors.primaryColor
-            },
-            headerTintColor:
-                Platform.OS === 'ios' ? Colors.primaryColor : 'white',
-        }
+const FavNavigator = createStackNavigator({
+    Favorites: FavoritesScreen,
+    MealDetail: MealDetailScreen
+},
+    {
+        defaultNavigationOptions: defaultStackNavOptions
     }
 );
 
@@ -47,7 +57,7 @@ const tabScreenConfig = {
         }
     },
     Favorites: {
-        screen: FavoritesScreen,
+        screen: FavNavigator,
         navigationOptions: {
             tabBarLabel: 'My Favorites',
             tabBarIcon: (tabInfo) => {
@@ -62,7 +72,7 @@ const MealsFavTabNavigator = Platform.OS === 'android' ?
     createMaterialBottomTabNavigator(tabScreenConfig, {
         activeColor: 'white',
         shifting: true
-    }) 
+    })
     : createBottomTabNavigator(tabScreenConfig, {
         tabBarOptions: {
             activeTintColor: Colors.accentColor

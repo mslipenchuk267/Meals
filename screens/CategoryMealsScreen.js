@@ -1,30 +1,10 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import MealItem from '../components/MealItem'
 import { CATEGORIES, MEALS } from '../data/dummy-data'
 import { FlatList } from 'react-native-gesture-handler';
 
+import MealList from '../components/MealList'
+
 const CategoriesMealsScreen = props => {
-
-    const renderMealItem = itemData => {
-        return (
-            <MealItem
-                title={itemData.item.title}
-                duration={itemData.item.duration}
-                complexity={itemData.item.complexity}
-                affordability={itemData.item.affordability}
-                image={itemData.item.imageUrl}
-                onSelectMeal={() => {
-                    props.navigation.navigate({
-                        routeName: 'MealDetail',
-                        params: {mealId: itemData.item.id}
-                    })
-                }}
-            />
-        );
-
-    }
-
 
     const catId = props.navigation.getParam('categoryId');
 
@@ -32,17 +12,8 @@ const CategoriesMealsScreen = props => {
     const displayedMeals = MEALS.filter(
         meal => meal.categoryIds.indexOf(catId) >= 0
     );
-
-    return (
-        <View style={styles.screen}>
-            <FlatList
-                keyExtractor={(item, index) => item.id}
-                data={displayedMeals}
-                renderItem={renderMealItem}
-                style={{ width: '100%' }}
-            />
-        </View>
-    );
+    // Forward navigatin prop to access from child
+    return <MealList listData={displayedMeals} navigation={props.navigation}/>;
 };
 
 CategoriesMealsScreen.navigationOptions = (navigationData) => {
@@ -54,15 +25,5 @@ CategoriesMealsScreen.navigationOptions = (navigationData) => {
         headerTruncatedBackTitle: 'Back',
     };
 };
-
-const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 15,
-        backgroundColor: 'white'
-    }
-});
 
 export default CategoriesMealsScreen;
